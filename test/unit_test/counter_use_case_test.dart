@@ -8,6 +8,6 @@ void main() {
     final container = ProviderContainer();
     expect(container.read(counterStateProvider), 0);
     container.read(counterUseCaseProvider).countUp();
-    expect(container.read(counterStateProvider), 1);
+    expect(container.read(counterStateProvider), 5);
   });
 }
