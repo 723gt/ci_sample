@@ -31,6 +31,6 @@ jobs:
       - name: flutter pub get
         run: flutter pub get
       - name: run Chrome
-        run: chromedriver --port=4444
+        run: chromedriver --port=4444 &
       - name: flutter widget test
         run:  flutter drive --driver=test_driver/integration_test.dart --target=integration_test/integration_test.dart -d web-server --no-headless
