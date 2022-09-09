@@ -22,13 +22,16 @@ jobs:
           sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
           sudo apt update
           sudo apt-get install google-chrome-stable
-          google-chrome --version
-      # - uses: subosito/flutter-action@v1
-      #   with:
-      #     flutter-version: "3.0.4"
-      # - name: flutter pub get
-      #   run: flutter pub get
-      # - name: run Chrome
-      #   run: chromedriver --port=4444
-      # - name: flutter widget test
-      #   run:  flutter drive --driver=test_driver/integration_test.dart --target=integration_test/integration_test.dart -d web-server --no-headless
+          export CHROME_VERSION=google-chrome --version | awk '{print $3}'
+          sudo wget https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
+          sudo unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "3.0.4"
+      - name: flutter pub get
+        run: flutter pub get
+      - name: run Chrome
+        run: chromedriver --port=4444
+      - name: flutter widget test
+        run:  flutter drive --driver=test_driver/integration_test.dart --target=integration_test/integration_test.dart -d web-server --no-headless
