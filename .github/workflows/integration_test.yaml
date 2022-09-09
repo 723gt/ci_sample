@@ -22,9 +22,7 @@ jobs:
           sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
           sudo apt update
           sudo apt-get install google-chrome-stable
-          export CHROME_VERSION=`google-chrome --version | awk '{print $3}'`
-          echo $CHROME_VERSION
-          sudo wget https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
+          sudo wget https://sites.google.com/chromium.org/driver/downloads#:~:text=%2C%20please%20download-,ChromeDriver%20105.0.5195.52,-If%20you%20are
           sudo unzip chromedriver_linux64.zip
           sudo mv chromedriver /usr/local/bin/
       - uses: subosito/flutter-action@v1
